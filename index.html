@@ -34,7 +34,8 @@ function render(){
   let h='', sec='';
   for(const e of hits){
     if(e.section!==sec){sec=e.section;h+=`<div class="sec">${sec}</div>`;}
-    const tel=e.phone.split('/')[0].trim();
+    const ext=e.phone.split('/')[0].replace(/[^0-9]/g,'');
+    const tel=ext.length===4? '2240'+ext : ext;
     const ext=e.phone.replace(/\s/g,'');
     const full=ext.length===4? '224050'+ext : ext;
     h+=`<div class="card"><div><b>${e.name}</b><div class="t">${e.title||''}</div></div><a class="tel" href="tel:${full}">${e.phone}</a></div>`;
